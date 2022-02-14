@@ -39,13 +39,14 @@ function Cocktails() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const updateCategory = async (e) => {
-    if (e) {
+  const updateCategory = async (isEvent) => {
+    if (isEvent) {
       const {
         data: { drinks: apiDrinks },
       } = await get(
-        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${e.target.value}`
+        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${isEvent.target.value}`
       );
+      // Store axios response in state Drinks
       setDrinks(apiDrinks);
     }
   };
@@ -55,8 +56,8 @@ function Cocktails() {
     } = await get(
       "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list"
     );
+    // Store axios response in state Categories
     setCategories(apiCategories);
-    updateCategory();
   };
   const getDrink = async (strDrinkThumb, id, strDrink) => {
     const {
@@ -66,6 +67,7 @@ function Cocktails() {
     } = await get(
       `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     );
+    // Store axios response in state Selected Drink
     setSelectedDrink([
       strDrinkThumb,
       id,
@@ -75,8 +77,9 @@ function Cocktails() {
       strTags,
     ]);
   };
-  useEffect(() => {
-    getCategory();
+  useEffect(async () => {
+    await getCategory();
+    await updateCategory();
   }, []);
   return (
     <Box>
@@ -125,8 +128,14 @@ function Cocktails() {
       <Modal aria-labelledby="Drink Modal" open={open} onClose={handleClose}>
         <CenterModal>
           <img
-            src={selectedDrink[0]}
-            alt={selectedDrink[2]}
+            src={
+              // Thumbnail
+              selectedDrink[0]
+            }
+            alt={
+              // Drink Name
+              selectedDrink[2]
+            }
             width="100"
             height="100"
           />
@@ -134,26 +143,46 @@ function Cocktails() {
             id="Drink Modal"
             variant="h6"
             component="h4"
-            sx={{ px: 2, fontWeight: "bold", overflowWrap: "break-word" }}
+            sx={{ px: 2, fontWeight: "bold", wordBreak: "break-word" }}
           >
             <Box component="span" sx={{ color: "#58CCED" }}>
-              Name: {selectedDrink[2]}
+              Name:{" "}
+              {
+                // Drink Name
+                selectedDrink[2]
+              }
             </Box>
             <br />
             <Box component="span" sx={{ color: "#3895D3" }}>
-              ID: {selectedDrink[1]}
+              ID:{" "}
+              {
+                // Drink ID
+                selectedDrink[1]
+              }
             </Box>
             <br />
             <Box component="span" sx={{ color: "#1261A0" }}>
-              Glass: {selectedDrink[3]}
+              Glass:{" "}
+              {
+                // Drink Glass
+                selectedDrink[3]
+              }
             </Box>
             <br />
             <Box component="span" sx={{ color: "#072F5F" }}>
-              Is Alcoholic: {selectedDrink[4] === "Alcoholic" ? "Yes" : "No"}
+              Is Alcoholic:{" "}
+              {
+                // Drink Alcoholic
+                selectedDrink[4] === "Alcoholic" ? "Yes" : "No"
+              }
             </Box>
             <br />
-            <Box component="span" sx={{ color: "#072F5F" }}>
-              Tags: {selectedDrink[5] ? selectedDrink[5] : "None"}
+            <Box component="span" sx={{ color: "#000000" }}>
+              Tags:{" "}
+              {
+                // Drink Tags
+                selectedDrink[5] ? selectedDrink[5] : "None"
+              }
             </Box>
           </Typography>
         </CenterModal>
@@ -167,13 +196,14 @@ function Cocktails() {
                 alt={strDrink}
                 key={id}
                 onClick={async () => {
+                  // Pass params and wait
                   await getDrink(strDrinkThumb, id, strDrink);
-                  await handleOpen();
+                  handleOpen();
                 }}
                 imageStyle={{
                   width: 100,
                   height: 100,
-                  borderRadius: "0.5rem",
+                  borderRadius: 6,
                 }}
                 style={{
                   backgroundColor: "hsla(0, 0%, 0%, 0)",

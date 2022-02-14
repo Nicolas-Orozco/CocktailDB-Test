@@ -67,9 +67,11 @@ const themeDark = createTheme({
 });
 
 function App() {
+  // Dark mode from localStorage
   const [dark, setDark] = useState(
     localStorage.getItem("dark-mode") === "true"
   );
+  // Update item to save
   useEffect(() => {
     localStorage.setItem("dark-mode", dark);
   }, [dark]);
@@ -81,7 +83,10 @@ function App() {
           switcher={
             <MaterialUISwitch
               sx={{ m: 1 }}
-              onClick={() => setDark(!dark)}
+              onClick={() =>
+                // Alternate themes
+                setDark(!dark)
+              }
               checked={dark}
             />
           }
