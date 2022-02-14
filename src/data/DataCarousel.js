@@ -2,6 +2,7 @@ import Slider1 from "../images/Slider-1.png";
 import Slider2 from "../images/Slider-2.jpg";
 import Slider3 from "../images/Slider-3.jpg";
 import Slider4 from "../images/Slider-4.jpg";
+import Slider5 from "../images/Slider-5.jpg";
 
 const DataCarousel = [
   {
@@ -23,6 +24,11 @@ const DataCarousel = [
     id: "4",
     image: Slider4,
     description: "Cocktails showcase Number 3",
+  },
+  {
+    id: "5",
+    image: Slider5,
+    description: "Cocktails showcase Number 4",
   },
 ];
 export default DataCarousel;

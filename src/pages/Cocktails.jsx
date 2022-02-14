@@ -11,7 +11,7 @@ import Stack from "@mui/material/Stack";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
 import Image from "material-ui-image";
 import { styled } from "@mui/material/styles";
-import { get } from "axios";
+import axios from "axios";
 
 const CenterModal = styled(Box)({
   position: "absolute",
@@ -43,7 +43,7 @@ function Cocktails() {
     if (isEvent) {
       const {
         data: { drinks: apiDrinks },
-      } = await get(
+      } = await axios.get(
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${isEvent.target.value}`
       );
       // Store axios response in state Drinks
@@ -53,7 +53,7 @@ function Cocktails() {
   const getCategory = async () => {
     const {
       data: { drinks: apiCategories },
-    } = await get(
+    } = await axios.get(
       "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list"
     );
     // Store axios response in state Categories
@@ -64,7 +64,7 @@ function Cocktails() {
       data: {
         drinks: [{ strGlass, strAlcoholic, strTags }],
       },
-    } = await get(
+    } = await axios.get(
       `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     );
     // Store axios response in state Selected Drink
