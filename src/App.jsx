@@ -7,8 +7,8 @@ import pMinDelay from "p-min-delay";
 import Layout from "./components/Layout";
 import Loading from "./pages/Loading";
 
-const Cocktails = lazy(() => pMinDelay(import("./pages/Cocktails"), 700));
-const Home = lazy(() => pMinDelay(import("./pages/Home"), 700));
+const Cocktails = lazy(() => pMinDelay(import("./pages/Cocktails"), 800));
+const Home = lazy(() => pMinDelay(import("./pages/Home"), 800));
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,

@@ -27,12 +27,15 @@ const CenterModal = styled(Box)(({ theme }) => ({
   borderRadius: 6,
 }));
 
-const ImageWrapper = styled(Box)({
+const ImageWrapper = styled(Box)(({ theme }) => ({
   display: "grid",
   gap: 2,
+  backgroundColor: theme.palette.background.paper,
+  padding: 10,
+  borderRadius: 6,
   gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
   gridTemplateRows: "repeat(5, minmax(100px, 1fr))",
-});
+}));
 function Cocktails() {
   const [categories, setCategories] = useState([]);
   const [drinks, setDrinks] = useState([]);
