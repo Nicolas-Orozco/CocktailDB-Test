@@ -13,7 +13,7 @@ import Image from "material-ui-image";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
 
-const CenterModal = styled(Box)({
+const CenterModal = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -22,10 +22,11 @@ const CenterModal = styled(Box)({
   padding: "1rem",
   display: "flex",
   alignItems: "center",
-  backgroundColor: "#ffffff",
-  color: "#000000",
+  backgroundColor: theme.palette.background.paper,
+  color: "primary.main",
   borderRadius: 6,
-});
+}));
+
 const ImageWrapper = styled(Box)({
   display: "grid",
   gap: 2,
@@ -145,45 +146,35 @@ function Cocktails() {
             component="h4"
             sx={{ px: 2, fontWeight: "bold", wordBreak: "break-word" }}
           >
-            <Box component="span" sx={{ color: "#58CCED" }}>
-              Name:{" "}
-              {
-                // Drink Name
-                selectedDrink.strDrink
-              }
-            </Box>
+            Name:{" "}
+            {
+              // Drink Name
+              selectedDrink.strDrink
+            }
             <br />
-            <Box component="span" sx={{ color: "#3895D3" }}>
-              ID:{" "}
-              {
-                // Drink ID
-                selectedDrink.id
-              }
-            </Box>
+            ID:{" "}
+            {
+              // Drink ID
+              selectedDrink.id
+            }
             <br />
-            <Box component="span" sx={{ color: "#1261A0" }}>
-              Glass:{" "}
-              {
-                // Drink Glass
-                selectedDrink.strGlass
-              }
-            </Box>
+            Glass:{" "}
+            {
+              // Drink Glass
+              selectedDrink.strGlass
+            }
             <br />
-            <Box component="span" sx={{ color: "#072F5F" }}>
-              Is Alcoholic:{" "}
-              {
-                // Drink Alcoholic
-                selectedDrink.strAlcoholic === "Alcoholic" ? "Yes" : "No"
-              }
-            </Box>
+            Is Alcoholic:{" "}
+            {
+              // Drink Alcoholic
+              selectedDrink.strAlcoholic === "Alcoholic" ? "Yes" : "No"
+            }
             <br />
-            <Box component="span" sx={{ color: "#000000" }}>
-              Tags:{" "}
-              {
-                // Drink Tags
-                selectedDrink.strTags ? selectedDrink.strTags : "None"
-              }
-            </Box>
+            Tags:{" "}
+            {
+              // Drink Tags
+              selectedDrink.strTags ? selectedDrink.strTags : "None"
+            }
           </Typography>
         </CenterModal>
       </Modal>

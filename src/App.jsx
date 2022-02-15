@@ -59,6 +59,16 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const themeLight = createTheme({
   palette: {
     mode: "light",
+    primary: {
+      main: "#343148",
+    },
+    secondary: {
+      main: "#242331",
+    },
+    background: {
+      default: "#d7c49e",
+      paper: "#deceac",
+    },
   },
 });
 
