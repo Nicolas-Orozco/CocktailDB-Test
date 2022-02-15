@@ -10,7 +10,7 @@ Also, you can choose other languages! : [English](README.md), [Español](README.
 
 Try handling:
 
-- Material UI _(I ended up loving it :heart:)_
+- Material UI _(Which I ended loving :heart:)_
 - Axios API calls
 - Asynchronous Javascript
 
