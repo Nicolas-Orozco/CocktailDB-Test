@@ -75,6 +75,9 @@ const themeLight = createTheme({
 const themeDark = createTheme({
   palette: {
     mode: "dark",
+    background: {
+      paper: "#333333",
+    },
   },
 });
 

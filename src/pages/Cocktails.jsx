@@ -48,7 +48,12 @@ function Cocktails() {
       const {
         data: { drinks: apiDrinks },
       } = await axios.get(
-        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${isEvent.target.value}`
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
+        {
+          params: {
+            c: isEvent.target.value,
+          },
+        }
       );
       // Store axios response in state Drinks
       setDrinks(apiDrinks);
@@ -58,7 +63,12 @@ function Cocktails() {
     const {
       data: { drinks: apiCategories },
     } = await axios.get(
-      "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list"
+      "https://www.thecocktaildb.com/api/json/v1/1/list.php",
+      {
+        params: {
+          c: "list",
+        },
+      }
     );
     // Store axios response in state Categories
     setCategories(apiCategories);
@@ -69,7 +79,12 @@ function Cocktails() {
         drinks: [{ strGlass, strAlcoholic, strTags }],
       },
     } = await axios.get(
-      `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+      "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+      {
+        params: {
+          i: id,
+        },
+      }
     );
     // Store axios response in state Selected Drink
     setSelectedDrink({
