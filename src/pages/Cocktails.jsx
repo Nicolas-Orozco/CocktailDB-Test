@@ -35,7 +35,7 @@ const ImageWrapper = styled(Box)({
 function Cocktails() {
   const [categories, setCategories] = useState([]);
   const [drinks, setDrinks] = useState([]);
-  const [selectedDrink, setSelectedDrink] = useState([]);
+  const [selectedDrink, setSelectedDrink] = useState({});
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -68,14 +68,14 @@ function Cocktails() {
       `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     );
     // Store axios response in state Selected Drink
-    setSelectedDrink([
+    setSelectedDrink({
       strDrinkThumb,
       id,
       strDrink,
       strGlass,
       strAlcoholic,
       strTags,
-    ]);
+    });
   };
   useEffect(async () => {
     await getCategory();
@@ -130,11 +130,11 @@ function Cocktails() {
           <img
             src={
               // Thumbnail
-              selectedDrink[0]
+              selectedDrink.strDrinkThumb
             }
             alt={
               // Drink Name
-              selectedDrink[2]
+              selectedDrink.strDrink
             }
             width="100"
             height="100"
@@ -149,7 +149,7 @@ function Cocktails() {
               Name:{" "}
               {
                 // Drink Name
-                selectedDrink[2]
+                selectedDrink.strDrink
               }
             </Box>
             <br />
@@ -157,7 +157,7 @@ function Cocktails() {
               ID:{" "}
               {
                 // Drink ID
-                selectedDrink[1]
+                selectedDrink.id
               }
             </Box>
             <br />
@@ -165,7 +165,7 @@ function Cocktails() {
               Glass:{" "}
               {
                 // Drink Glass
-                selectedDrink[3]
+                selectedDrink.strGlass
               }
             </Box>
             <br />
@@ -173,7 +173,7 @@ function Cocktails() {
               Is Alcoholic:{" "}
               {
                 // Drink Alcoholic
-                selectedDrink[4] === "Alcoholic" ? "Yes" : "No"
+                selectedDrink.strAlcoholic === "Alcoholic" ? "Yes" : "No"
               }
             </Box>
             <br />
@@ -181,7 +181,7 @@ function Cocktails() {
               Tags:{" "}
               {
                 // Drink Tags
-                selectedDrink[5] ? selectedDrink[5] : "None"
+                selectedDrink.strTags ? selectedDrink.strTags : "None"
               }
             </Box>
           </Typography>
