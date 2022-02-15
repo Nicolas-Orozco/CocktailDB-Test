@@ -4,7 +4,7 @@ Imagen de [OpenClipart-Vectors](https://pixabay.com/es/users/openclipart-vectors
 
 **Simplemente un test usando CocktailDB**
 
-\_Incluso, puedes escoger otros idiomas! : [English](README.md), [Español](README.es.md)
+Incluso, puedes escoger otros idiomas! : [English](README.md), [Español](README.es.md)
 
 ## Objetivo:
 
