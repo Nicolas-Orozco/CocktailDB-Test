@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import pMinDelay from "p-min-delay";
 import Layout from "./components/Layout";
-import Cocktails from "./pages/Cocktails";
-import Home from "./pages/Home";
+import Loading from "./pages/Loading";
 
+const Cocktails = lazy(() => pMinDelay(import("./pages/Cocktails"), 700));
+const Home = lazy(() => pMinDelay(import("./pages/Home"), 700));
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
@@ -92,8 +94,22 @@ function App() {
           }
         >
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cocktails" element={<Cocktails />} />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<Loading />}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/cocktails"
+              element={
+                <Suspense fallback={<Loading />}>
+                  <Cocktails />
+                </Suspense>
+              }
+            />
           </Routes>
         </Layout>
       </BrowserRouter>
